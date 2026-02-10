@@ -12,14 +12,14 @@
  *   - September, October, November (9, 10, 11)   → "Autumn"
  *
  * Step 2 — Suggest an activity based on season AND temperature (°C):
- *   - Winter + temp < 0     → "skiing"
- *   - Winter + temp >= 0    → "ice skating"
- *   - Spring + temp > 20    → "hiking"
- *   - Spring + temp <= 20   → "museum visit"
- *   - Summer + temp > 35    → "swimming"
- *   - Summer + temp <= 35   → "cycling"
- *   - Autumn + temp > 15    → "nature walk"
- *   - Autumn + temp <= 15   → "reading at a cafe"
+ *   - Winter + temperature < 0     → "skiing"
+ *   - Winter + temperature >= 0    → "ice skating"
+ *   - Spring + temperature > 20    → "hiking"
+ *   - Spring + temperature <= 20   → "museum visit"
+ *   - Summer + temperature > 35    → "swimming"
+ *   - Summer + temperature <= 35   → "cycling"
+ *   - Autumn + temperature > 15    → "nature walk"
+ *   - Autumn + temperature <= 15   → "reading at a cafe"
  *
  * Return an object: { season: string, activity: string }
  *
@@ -32,4 +32,26 @@
  */
 export function getSeasonActivity(month, temperature) {
   // Your code here
+  if (month < 1 || month > 12) return null;
+  let obj = { season: "", activity: "" };
+  if (month === 1 || month === 2 || month === 12) obj["season"] = "Winter";
+  else if (month === 3 || month === 4 || month === 5) obj["season"] = "Spring";
+  else if (month === 6 || month === 7 || month === 8) obj["season"] = "Summer";
+  else obj["season"] = "Autumn";
+
+  if (obj["season"] === "Winter") {
+    if (temperature < 0) obj["activity"] = "skiing"
+    else if (temperature >= 0) obj["activity"] = "ice skating"
+  } else if (obj["season"] === "Spring") {
+    if (temperature > 20) obj["activity"] = "hiking"
+    else if (temperature <= 20) obj["activity"] = "museum visit"
+  } else if (obj["season"] === "Summer") {
+    if (temperature > 35) obj["activity"] = "swimming"
+    else if (temperature <= 35) obj["activity"] = "cycling"
+  }
+  else if (obj["season"] === "Autumn") {
+    if (temperature > 15) obj["activity"] = "nature walk"
+    else if (temperature <= 15) obj["activity"] = "reading at a cafe"
+  }
+  return obj;
 }
